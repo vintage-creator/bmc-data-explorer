@@ -1,4 +1,4 @@
-# Blue Marvel Capital — Trading Dashboard
+# Blue Marvel Capital Strategies — Trading Dashboard
 
 A minimal trading analytics dashboard showcasing key performance metrics, trade history, distribution charts, and proprietary insights for **Blue Marvel Capital Strategies — Apollo I (Account 3591540).**
 
@@ -19,8 +19,6 @@ This project contains a React + TypeScript application that renders:
 
 All displayed data is **proprietary and confidential**.
 
----
-
 ## Tech Stack
 
 - **React + TypeScript**
@@ -30,8 +28,6 @@ All displayed data is **proprietary and confidential**.
 - **framer-motion**
 - **lucide-react**
 
----
-
 ## Installation & Setup
 
 ```bash
@@ -40,17 +36,17 @@ git clone <YOUR_GIT_URL>
 cd <YOUR_PROJECT_NAME>
 ```
 
-# Install dependencies
+## Install dependencies
 npm install
 
-# Start development server
+## Start development server
 npm run dev
 
 ## To build for production:
 npm run build
 npm run preview
 
-# Project Structure
+## Project Structure
 ```bash src/
  ├─ components/
  │   └─ TradingDashboard/
@@ -64,7 +60,7 @@ npm run preview
  └─ pages/Index.tsx
  ```
 
- # Security Notice
- 
+ ## Security Notice
+
 - All trading data displayed or referenced is confidential and the property of Blue Marvel Capital Strategies.
 - Do NOT redistribute, publish, or expose the included data or dashboard visuals.
