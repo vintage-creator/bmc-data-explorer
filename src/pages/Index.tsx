@@ -82,30 +82,30 @@ const Index = () => {
             delay={0}
           />
           <MetricCard
+            title="ROI"
+            value={`${performanceMetrics.roi.toFixed(2)}%`}
+            subtitle="Return on Investment"
+            icon={TrendingUp}
+            trend="up"
+            tooltip="Return on Investment: percentage gain on initial capital. A strong ROI indicates efficient capital deployment."
+            delay={0.1}
+          />
+          <MetricCard
             title="Win Rate"
             value={`${tradeStatistics.profitTradesPercent}%`}
             subtitle={`${tradeStatistics.profitTrades} of ${tradeStatistics.totalTrades} trades`}
             icon={Target}
             trend="up"
             tooltip="Percentage of profitable trades. Industry average is typically 40-60%. Your 80.65% is exceptional."
-            delay={0.1}
+            delay={0.2}
           />
           <MetricCard
             title="Profit Factor"
             value={performanceMetrics.profitFactor}
             subtitle="Risk-Reward Ratio"
-            icon={TrendingUp}
+            icon={Activity}
             trend="up"
             tooltip="Ratio of gross profit to gross loss. A profit factor above 2.0 is considered excellent. Your 4.40 is outstanding."
-            delay={0.2}
-          />
-          <MetricCard
-            title="Max Drawdown"
-            value={`${performanceMetrics.relativeDrawdown}%`}
-            subtitle={`$${performanceMetrics.maximalDrawdown.toLocaleString()}`}
-            icon={Activity}
-            trend="neutral"
-            tooltip="Maximum peak-to-trough decline. Lower is better. Under 20% is considered well-managed risk."
             delay={0.3}
           />
         </div>

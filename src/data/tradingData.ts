@@ -56,6 +56,8 @@ export const performanceMetrics = {
   relativeDrawdown: 10.74,
   balance: 13653.79,
   equity: 13653.79,
+  initialBalance: 10000,
+  roi: 36.54, // (balance - initialBalance) / initialBalance * 100
 };
 
 export const tradeStatistics = {
