@@ -7,7 +7,6 @@ import {
   Activity,
   BarChart3,
   Lock,
-  Percent,
   LineChart,
   Gauge,
 } from "lucide-react";
@@ -17,6 +16,8 @@ import { PerformanceChart } from "@/components/TradingDashboard/PerformanceChart
 import { ROIChart } from "@/components/TradingDashboard/ROIChart";
 import { TradeDistribution } from "@/components/TradingDashboard/TradeDistribution";
 import { TradeHistory } from "@/components/TradingDashboard/TradeHistory";
+import { RiskMetricsGauge } from "@/components/TradingDashboard/RiskMetricsGauge";
+import { BenchmarkComparison } from "@/components/TradingDashboard/BenchmarkComparison";
 import { InsightsTips } from "@/components/TradingDashboard/InsightsTips";
 import { performanceMetrics, tradeStatistics } from "@/data/tradingData";
 
@@ -127,6 +128,16 @@ const Index = () => {
         {/* Trade Distribution Charts */}
         <div className="mb-8">
           <TradeDistribution />
+        </div>
+
+        {/* Risk Metrics Gauge */}
+        <div className="mb-8">
+          <RiskMetricsGauge />
+        </div>
+
+        {/* Benchmark Comparison */}
+        <div className="mb-8">
+          <BenchmarkComparison />
         </div>
 
         {/* Risk & Trading Metrics Grid */}
