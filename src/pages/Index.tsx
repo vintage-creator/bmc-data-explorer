@@ -7,6 +7,9 @@ import {
   Activity,
   BarChart3,
   Lock,
+  Percent,
+  LineChart,
+  Gauge,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { MetricCard } from "@/components/TradingDashboard/MetricCard";
@@ -27,10 +30,10 @@ const Index = () => {
             {/* Title */}
             <div className="text-center md:text-left">
               <h1 className="text-2xl font-bold text-foreground">
-                Blue Marvel Capital Strategies
+                Blue Marvel Capital
               </h1>
               <p className="text-sm text-muted-foreground">
-                Apollo I - Account 3591540
+                Performance Simulation for Atlas FX Brokers
               </p>
             </div>
 
@@ -57,16 +60,16 @@ const Index = () => {
             <AlertCircle className="h-4 w-4 text-warning" />
             <AlertDescription className="text-warning-foreground text-white">
               <strong>Confidential:</strong> This trading data is proprietary
-              information of Blue Marvel Capital Strategies. Unauthorized
-              distribution or reproduction is prohibited. For official site:
+              information of Blue Marvel Capital. Prepared for{" "}
               <a
-                href="https://bmc-trading-floor-user-web-kszq.vercel.app/"
+                href="https://atlasfxbrokers.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline ml-1 hover:text-warning"
+                className="underline hover:text-warning"
               >
-                bmc-trading-floor-user-web-kszq.vercel.app
-              </a>
+                atlasfxbrokers.com
+              </a>{" "}
+              - Unauthorized distribution or reproduction is prohibited.
             </AlertDescription>
           </Alert>
         </motion.div>
@@ -76,37 +79,37 @@ const Index = () => {
           <MetricCard
             title="Total Net Profit"
             value={`$${performanceMetrics.totalNetProfit.toLocaleString()}`}
-            subtitle="Q4 2025 Performance"
+            subtitle="November 2025"
             icon={DollarSign}
             trend="up"
-            tooltip="Total profit after all commissions and fees. This represents the net gain for the quarter."
+            tooltip="Total profit after all commissions and fees for November 2025."
             delay={0}
           />
           <MetricCard
-            title="ROI"
-            value={`${performanceMetrics.roi.toFixed(2)}%`}
-            subtitle="Return on Investment"
+            title="Portfolio Return"
+            value={`${performanceMetrics.roi}%`}
+            subtitle="Total Return on Investment"
             icon={TrendingUp}
             trend="up"
-            tooltip="Return on Investment: percentage gain on initial capital. A strong ROI indicates efficient capital deployment."
+            tooltip="Total portfolio return: 37% gain on initial capital of $10,000."
             delay={0.1}
           />
           <MetricCard
-            title="Win Rate"
-            value={`${tradeStatistics.profitTradesPercent}%`}
-            subtitle={`${tradeStatistics.profitTrades} of ${tradeStatistics.totalTrades} trades`}
-            icon={Target}
+            title="Sharpe Ratio"
+            value={performanceMetrics.sharpeRatioAnnualized.toFixed(2)}
+            subtitle="Annualized (Monthly: 0.58)"
+            icon={Gauge}
             trend="up"
-            tooltip="Percentage of profitable trades. Industry average is typically 40-60%. Your 80.65% is exceptional."
+            tooltip="Risk-adjusted return measure. Above 2.0 is considered excellent. Calculated against 4% US T-Bill risk-free rate."
             delay={0.2}
           />
           <MetricCard
-            title="Profit Factor"
-            value={performanceMetrics.profitFactor}
-            subtitle="Risk-Reward Ratio"
-            icon={Activity}
+            title="Alpha"
+            value={`${performanceMetrics.alpha}%`}
+            subtitle="Q4 2025 Excess Performance"
+            icon={LineChart}
             trend="up"
-            tooltip="Ratio of gross profit to gross loss. A profit factor above 2.0 is considered excellent. Your 4.40 is outstanding."
+            tooltip="Alpha measures outperformance relative to benchmark. 33% alpha indicates exceptional active management."
             delay={0.3}
           />
         </div>
@@ -126,16 +129,56 @@ const Index = () => {
           <TradeDistribution />
         </div>
 
-        {/* Additional Metrics Grid */}
+        {/* Risk & Trading Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <MetricCard
             title="Current Balance"
             value={`$${performanceMetrics.balance.toLocaleString()}`}
-            subtitle="Account equity"
+            subtitle={`Initial: $${performanceMetrics.initialBalance.toLocaleString()}`}
             icon={DollarSign}
-            trend="neutral"
-            tooltip="Total account value including closed positions."
+            trend="up"
+            tooltip="Current account equity including all closed positions."
             delay={0.4}
+          />
+          <MetricCard
+            title="Win Rate"
+            value={`${tradeStatistics.profitTradesPercent}%`}
+            subtitle={`${tradeStatistics.profitTrades} of ${tradeStatistics.totalTrades} trades`}
+            icon={Target}
+            trend="up"
+            tooltip="Percentage of profitable trades. Industry average is 40-60%. 80.65% is exceptional."
+            delay={0.5}
+          />
+          <MetricCard
+            title="Profit Factor"
+            value={performanceMetrics.profitFactor.toFixed(2)}
+            subtitle="Risk-Reward Ratio"
+            icon={Activity}
+            trend="up"
+            tooltip="Ratio of gross profit to gross loss. Above 2.0 is excellent. 4.40 is outstanding."
+            delay={0.6}
+          />
+          <MetricCard
+            title="Std Deviation"
+            value={`${performanceMetrics.standardDeviation.toFixed(2)}%`}
+            subtitle="Portfolio Volatility"
+            icon={BarChart3}
+            trend="neutral"
+            tooltip="Standard deviation of returns (14.39%). Lower volatility with high returns indicates efficient risk management."
+            delay={0.7}
+          />
+        </div>
+
+        {/* Additional Metrics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <MetricCard
+            title="Excess Return"
+            value={`${performanceMetrics.excessReturn}%`}
+            subtitle={`Avg: ${performanceMetrics.averageExcessReturn}%`}
+            icon={TrendingUp}
+            trend="up"
+            tooltip="Return above risk-free rate (4% US T-Bill). 25% excess return demonstrates strong performance."
+            delay={0.8}
           />
           <MetricCard
             title="Avg Win"
@@ -143,8 +186,8 @@ const Index = () => {
             subtitle="Per profitable trade"
             icon={TrendingUp}
             trend="up"
-            tooltip="Average profit on winning trades. Higher values indicate strong profit-taking strategy."
-            delay={0.5}
+            tooltip="Average profit on winning trades. Higher values indicate strong profit-taking."
+            delay={0.9}
           />
           <MetricCard
             title="Avg Loss"
@@ -153,7 +196,7 @@ const Index = () => {
             icon={Activity}
             trend="down"
             tooltip="Average loss on losing trades. Smaller losses indicate good risk management."
-            delay={0.6}
+            delay={1.0}
           />
           <MetricCard
             title="Total Trades"
@@ -162,7 +205,7 @@ const Index = () => {
             icon={BarChart3}
             trend="neutral"
             tooltip="Total number of closed positions for the period."
-            delay={0.7}
+            delay={1.1}
           />
         </div>
 
@@ -178,8 +221,8 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border mt-16 py-8">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>© 2025 Blue Marvel Capital Strategies. All rights reserved.</p>
-          <p className="mt-2">Data as of Q4 2025 - Statement ID: 3591540</p>
+          <p>© 2025 Blue Marvel Capital. All rights reserved.</p>
+          <p className="mt-2">Performance Simulation - Prepared for Atlas FX Brokers</p>
         </div>
       </footer>
     </div>

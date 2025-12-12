@@ -1,36 +1,37 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { Lightbulb, TrendingUp, Shield, Target, AlertCircle } from "lucide-react";
+import { Lightbulb, TrendingUp, Shield, Target, AlertCircle, Gauge } from "lucide-react";
+import { performanceMetrics, tradeStatistics } from "@/data/tradingData";
 
 const insights = [
   {
+    icon: Gauge,
+    title: "Strong Sharpe Ratio",
+    description: `Annualized Sharpe Ratio of ${performanceMetrics.sharpeRatioAnnualized} indicates excellent risk-adjusted returns. Above 2.0 is considered exceptional in the industry.`,
+    type: "success",
+  },
+  {
     icon: TrendingUp,
-    title: "Exceptional Win Rate",
-    description: "80.65% win rate significantly exceeds industry standards. Your strategy demonstrates strong market timing and risk management.",
+    title: "Outstanding Alpha Generation",
+    description: `${performanceMetrics.alpha}% alpha in Q4 2025 demonstrates significant outperformance. This indicates strong active management capabilities.`,
     type: "success",
   },
   {
     icon: Target,
-    title: "Profit Factor Strength",
-    description: "4.40 profit factor indicates excellent risk-reward ratio. For every $1 risked, you're making $4.40 in profit.",
+    title: "Exceptional Win Rate",
+    description: `${tradeStatistics.profitTradesPercent}% win rate significantly exceeds industry standards. Combined with ${performanceMetrics.profitFactor.toFixed(2)} profit factor shows consistent execution.`,
     type: "success",
   },
   {
     icon: Shield,
-    title: "Controlled Drawdown",
-    description: "10.74% relative drawdown shows disciplined risk management. Consider maintaining position sizing during volatile periods.",
-    type: "info",
-  },
-  {
-    icon: Lightbulb,
-    title: "Position Type Balance",
-    description: "Both long (80% win rate) and short (80.95% win rate) positions perform exceptionally well. Your strategy adapts to market conditions.",
+    title: "Controlled Volatility",
+    description: `${performanceMetrics.standardDeviation.toFixed(2)}% standard deviation with ${performanceMetrics.excessReturn}% excess return over risk-free rate shows efficient risk management.`,
     type: "info",
   },
   {
     icon: AlertCircle,
     title: "Consecutive Wins Streak",
-    description: "23 consecutive wins generated $4,714. While impressive, ensure you maintain strict stop-losses to protect gains.",
+    description: `${tradeStatistics.maxConsecutiveWins} consecutive wins achieved. While impressive, maintaining strict stop-losses remains critical for capital preservation.`,
     type: "warning",
   },
 ];

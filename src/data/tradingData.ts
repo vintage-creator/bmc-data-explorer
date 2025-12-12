@@ -46,18 +46,33 @@ export const trades: Trade[] = [
 ];
 
 export const performanceMetrics = {
+  // Core Performance
   grossProfit: 4728.87,
   grossLoss: 1075.08,
   totalNetProfit: 3653.79,
   profitFactor: 4.40,
   expectedPayoff: 117.86,
+  
+  // Drawdown Metrics
   absoluteDrawdown: 1060.45,
   maximalDrawdown: 1075.08,
   relativeDrawdown: 10.74,
+  
+  // Balance Info
   balance: 13653.79,
   equity: 13653.79,
   initialBalance: 10000,
-  roi: 36.54, // (balance - initialBalance) / initialBalance * 100
+  roi: 36.54, // Total Portfolio Return: 37% -> using exact calculation
+  
+  // Risk-Adjusted Metrics (from BMC simulation)
+  sharpeRatioMonthly: 0.58,
+  sharpeRatioAnnualized: 2.0,
+  riskFreeRate: 4, // US T-Bill 3 Month (%)
+  excessReturn: 25, // (%)
+  averageExcessReturn: 8, // (%)
+  standardDeviation: 14.39, // 0.1439 * 100
+  variance: 2.07, // 0.0207 * 100
+  alpha: 33, // Q4/25 Alpha (%)
 };
 
 export const tradeStatistics = {
