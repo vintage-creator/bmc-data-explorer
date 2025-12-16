@@ -24,19 +24,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
-  // Recipient — change here when needed
   const recipient = "Mr. Farouk Bernaoui";
 
-  // Client share configuration
-  const clientSharePercent = 0.6; // 60%
-  // Use totalNetProfit as the base profit amount (3,653.79 in your example)
+  const clientSharePercent = 0.6;
   const rawProfit = Number(performanceMetrics.totalNetProfit) || 0;
 
-  // compute take-home
-  const clientTakeHome = +(rawProfit * clientSharePercent);
-  // formatted strings
+  const clientTakeHome = rawProfit * clientSharePercent;
+
   const fmtMoney = (n: number) =>
-    n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    n.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 
   const rawProfitFormatted = fmtMoney(rawProfit);
   const takeHomeFormatted = fmtMoney(clientTakeHome);
@@ -46,59 +45,52 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            {/* Title */}
-            <div className="text-center md:text-left">
-              <h1 className="text-2xl font-bold text-foreground">Blue Marvel Capital</h1>
-              <p className="text-sm text-muted-foreground">Performance Simulation Report</p>
-            </div>
+        <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row gap-4 items-center justify-between">
+          <div className="text-center md:text-left">
+            <h1 className="text-2xl font-bold">Blue Marvel Capital</h1>
+            <p className="text-sm text-muted-foreground">
+              Performance Simulation Report
+            </p>
+          </div>
 
-            {/* Proprietary Badge */}
-            <div className="flex items-center justify-center md:justify-end gap-2 px-4 py-2 bg-primary/10 rounded-lg border border-primary/30">
-              <Lock className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Proprietary Data</span>
-            </div>
+          <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-lg border border-primary/30">
+            <Lock className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary">
+              Proprietary Data
+            </span>
           </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        {/* Warning Alert */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6"
-        >
-          <Alert className="bg-warning/10 border-warning/50">
-            <AlertCircle className="h-4 w-4 text-warning" />
-            <AlertDescription className="text-warning-foreground text-white">
-              <strong>Confidential:</strong> This trading data is proprietary information of
-              Blue Marvel Capital. Prepared exclusively for{" "}
-              <span className="font-bold text-white">{recipient}</span>. Unauthorized distribution or reproduction
-              is prohibited.
-            </AlertDescription>
-          </Alert>
-        </motion.div>
+        {/* Alert */}
+        <Alert className="mb-6 bg-warning/10 border-warning/50">
+          <AlertCircle className="h-4 w-4 text-warning" />
+          <AlertDescription className="text-white">
+            <strong>Confidential:</strong> Prepared exclusively for{" "}
+            <span className="font-bold">{recipient}</span>.
+          </AlertDescription>
+        </Alert>
 
-        {/* Big Personal Heading */}
+        {/* Heading */}
         <div className="mb-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-primary">Prepared For: {recipient}</h2>
-          <p className="text-muted-foreground mt-2">Personalized Performance Simulation Report — Q4/2025</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary">
+            Prepared For: {recipient}
+          </h2>
+          <p className="text-muted-foreground mt-2">
+            Personalized Performance Simulation Report — Q4/2025
+          </p>
         </div>
 
-        {/* Capital Overview + Recipient Summary */}
+        {/* Capital Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <MetricCard
               title="Initial Capital"
               value={`$${performanceMetrics.initialBalance.toLocaleString()}`}
               subtitle="Starting Investment"
               icon={DollarSign}
               trend="neutral"
-              tooltip="Initial capital allocated for this performance simulation."
-              delay={0}
             />
             <MetricCard
               title="Current Balance"
@@ -106,8 +98,6 @@ const Index = () => {
               subtitle={`+$${performanceMetrics.totalNetProfit.toLocaleString()} profit`}
               icon={DollarSign}
               trend="up"
-              tooltip="Current portfolio value after all trades."
-              delay={0.1}
             />
             <MetricCard
               title="Total Return"
@@ -115,107 +105,64 @@ const Index = () => {
               subtitle="Portfolio Performance"
               icon={TrendingUp}
               trend="up"
-              tooltip="Total percentage return on initial capital."
-              delay={0.2}
             />
           </div>
 
-          {/* Client Take-Home Summary - Professional animated card */}
-          <motion.div
-            className="md:col-span-1"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Card className="relative overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 shadow-xl h-full">
-              {/* Animated background accent */}
-              <motion.div
-                className="absolute top-0 right-0 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-bl from-primary/20 to-transparent rounded-bl-full"
-                animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              />
-              
-              <CardContent className="p-3 sm:p-5 relative z-10">
-                {/* Header with badge */}
-                <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
-                  <span className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                    Client Summary
-                  </span>
-                  <Badge className="bg-primary text-primary-foreground shadow-sm text-[10px] sm:text-xs px-2 py-0.5">
-                    {percentText} Share
-                  </Badge>
-                </div>
+          {/* ✅ RESPONSIVE CLIENT SUMMARY */}
+          <Card className="border-2 border-primary/20 shadow-xl">
+            <CardContent className="p-4 sm:p-6 space-y-4">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs uppercase tracking-wide text-muted-foreground">
+                  Client Summary
+                </span>
+                <Badge>{percentText} Share</Badge>
+              </div>
 
-                {/* Client name */}
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <p className="text-xs sm:text-sm text-muted-foreground">Prepared for</p>
-                  <h3 className="text-base sm:text-lg font-bold text-foreground mt-0.5 truncate">{recipient}</h3>
-                </motion.div>
+              <div>
+                <p className="text-xs text-muted-foreground">Prepared for</p>
+                <h3 className="text-base sm:text-lg font-bold break-words">
+                  {recipient}
+                </h3>
+              </div>
 
-                {/* Divider */}
-                <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-3 sm:my-4" />
+              <div className="border-t pt-4">
+                <p className="text-xs text-muted-foreground mb-1">
+                  Total Profit Generated
+                </p>
+                <p className="text-lg sm:text-xl font-bold break-words leading-tight">
+                  ${rawProfitFormatted}
+                </p>
+              </div>
 
-                {/* Total Profit */}
-                <motion.div
-                  className="mb-3 sm:mb-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <p className="text-[10px] sm:text-xs text-muted-foreground mb-1">Total Profit Generated</p>
-                  <p className="text-xl sm:text-2xl font-bold text-foreground">${rawProfitFormatted}</p>
-                </motion.div>
-
-                {/* Client Take-Home - Highlighted */}
-                <motion.div
-                  className="p-3 sm:p-4 rounded-lg bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[10px] sm:text-xs font-medium text-green-700 dark:text-green-400 uppercase tracking-wide">
-                        Your Take-Home
-                      </p>
-                      <motion.p
-                        className="text-xl sm:text-2xl md:text-3xl font-extrabold text-green-600 dark:text-green-400 mt-1 truncate"
-                        initial={{ scale: 0.9 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
-                      >
-                        ${takeHomeFormatted}
-                      </motion.p>
-                    </div>
-                    <motion.div
-                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-green-500/20 flex items-center justify-center shrink-0"
-                      animate={{ rotate: [0, 5, -5, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-green-600 dark:text-green-400" />
-                    </motion.div>
-                  </div>
-
-                  {/* Formula */}
-                  <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-green-500/20">
-                    <p className="text-[10px] sm:text-xs text-muted-foreground font-mono truncate">
-                      ${rawProfitFormatted} × {percentText} = ${takeHomeFormatted}
+              {/* TAKE HOME — FIXED */}
+              <div className="rounded-lg border border-green-500/20 bg-green-500/10 p-4">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium text-green-700 uppercase">
+                      Your Take-Home
+                    </p>
+                    <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-green-600 break-words leading-tight">
+                      ${takeHomeFormatted}
                     </p>
                   </div>
-                </motion.div>
 
-                {/* Footer */}
-                <p className="text-[10px] sm:text-xs text-muted-foreground mt-3 sm:mt-4 text-center">
-                  Performance Period: Q4/2025
+                  <div className="self-start sm:self-center shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                      <DollarSign className="w-5 h-5 text-green-600" />
+                    </div>
+                  </div>
+                </div>
+
+                <p className="mt-3 text-[11px] text-muted-foreground font-mono break-words">
+                  ${rawProfitFormatted} × {percentText} = ${takeHomeFormatted}
                 </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+              </div>
+
+              <p className="text-xs text-center text-muted-foreground">
+                Performance Period: Q4/2025
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Key Performance Metrics */}
