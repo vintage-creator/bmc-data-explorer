@@ -154,7 +154,7 @@ const Index = () => {
                     transition={{ delay: 0.5 }}
                     className="lg:col-span-1"
                   >
-                    <div className="rounded-2xl border-2 border-green-500/40 bg-gradient-to-br from-green-500/15 via-emerald-500/10 to-green-600/5 p-6 text-center shadow-lg shadow-green-500/10">
+                    <div className="rounded-2xl border-[3px] border-green-500/50 bg-gradient-to-br from-green-500/15 via-emerald-500/10 to-green-600/5 p-8 text-center shadow-lg shadow-green-500/10">
                       <p className="text-xs font-semibold text-green-400 uppercase tracking-widest mb-3">
                         Your Take-Home
                       </p>
