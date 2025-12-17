@@ -67,7 +67,7 @@ const Index = () => {
         <Alert className="mb-6 bg-warning/10 border-warning/50">
           <AlertCircle className="h-4 w-4 text-warning" />
           <AlertDescription className="text-white">
-            <strong>Confidential:</strong> Prepared exclusively for{" "}
+            <strong>Confidential:</strong> This trading data is proprietary information of Blue Marvel Capital. Prepared exclusively for{" "}
             <span className="font-bold">{recipient}</span>. Unauthorized distribution or reproduction is prohibited.
           </AlertDescription>
         </Alert>
