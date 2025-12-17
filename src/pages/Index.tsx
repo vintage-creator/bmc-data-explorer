@@ -24,7 +24,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
-  const recipient = "Mr. Farouk Bernaoui";
+  const recipient = "";
 
   const clientSharePercent = 0.6;
   const rawProfit = Number(performanceMetrics.totalNetProfit) || 0;
@@ -107,7 +107,7 @@ const Index = () => {
           />
         </div>
 
-        {/* Client Summary - Centered & Balanced */}
+        /* {/* Client Summary - Centered & Balanced */}
         <div className="flex justify-center mb-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -210,7 +210,7 @@ const Index = () => {
               </CardContent>
             </Card>
           </motion.div>
-        </div>
+        </div> */
 
         {/* Key Performance Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
