@@ -82,87 +82,91 @@ const Index = () => {
           </p>
         </div>
 
-        {/* Capital Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <MetricCard
-              title="Initial Capital"
-              value={`$${performanceMetrics.initialBalance.toLocaleString()}`}
-              subtitle="Starting Investment"
-              icon={DollarSign}
-              trend="neutral"
-            />
-            <MetricCard
-              title="Current Balance"
-              value={`$${performanceMetrics.balance.toLocaleString()}`}
-              subtitle={`+$${performanceMetrics.totalNetProfit.toLocaleString()} profit`}
-              icon={DollarSign}
-              trend="up"
-            />
-            <MetricCard
-              title="Total Return"
-              value={`${performanceMetrics.roi}%`}
-              subtitle="Portfolio Performance"
-              icon={TrendingUp}
-              trend="up"
-            />
-          </div>
+        {/* Capital Overview - Top Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          <MetricCard
+            title="Initial Capital"
+            value={`$${performanceMetrics.initialBalance.toLocaleString()}`}
+            subtitle="Starting Investment"
+            icon={DollarSign}
+            trend="neutral"
+          />
+          <MetricCard
+            title="Current Balance"
+            value={`$${performanceMetrics.balance.toLocaleString()}`}
+            subtitle={`+$${performanceMetrics.totalNetProfit.toLocaleString()} profit`}
+            icon={DollarSign}
+            trend="up"
+          />
+          <MetricCard
+            title="Total Return"
+            value={`${performanceMetrics.roi}%`}
+            subtitle="Portfolio Performance"
+            icon={TrendingUp}
+            trend="up"
+          />
+        </div>
 
-          {/* ✅ RESPONSIVE CLIENT SUMMARY */}
-          <Card className="border-2 border-primary/20 shadow-xl">
-            <CardContent className="p-4 sm:p-6 space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Client Summary
-                </span>
-                <Badge>{percentText} Share</Badge>
+        {/* Client Summary - Centered */}
+        <div className="flex justify-center mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full max-w-2xl"
+          >
+            <Card className="relative border-2 border-primary/30 shadow-xl bg-gradient-to-br from-card via-card to-primary/5 overflow-hidden">
+              {/* Pinned Icon */}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                <div className="bg-primary text-primary-foreground px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2">
+                  <Target className="w-4 h-4" />
+                  <span className="text-xs font-semibold uppercase tracking-wide">Client Summary</span>
+                </div>
               </div>
 
-              <div>
-                <p className="text-xs text-muted-foreground">Prepared for</p>
-                <h3 className="text-base sm:text-lg font-bold break-words">
-                  {recipient}
-                </h3>
-              </div>
-
-              <div className="border-t pt-4">
-                <p className="text-xs text-muted-foreground mb-1">
-                  Total Profit Generated
-                </p>
-                <p className="text-lg sm:text-xl font-bold break-words leading-tight">
-                  ${rawProfitFormatted}
-                </p>
-              </div>
-
-              {/* TAKE HOME — FIXED */}
-              <div className="rounded-lg border border-green-500/20 bg-green-500/10 p-4">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium text-green-700 uppercase">
-                      Your Take-Home
-                    </p>
-                    <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-green-600 break-words leading-tight">
-                      ${takeHomeFormatted}
-                    </p>
+              <CardContent className="pt-8 pb-6 px-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                  {/* Client Info */}
+                  <div className="text-center md:text-left">
+                    <p className="text-xs text-muted-foreground mb-1">Prepared for</p>
+                    <h3 className="text-lg font-bold">{recipient}</h3>
+                    <Badge className="mt-2">{percentText} Share</Badge>
                   </div>
 
-                  <div className="self-start sm:self-center shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                      <DollarSign className="w-5 h-5 text-green-600" />
+                  {/* Take Home - Center Focus */}
+                  <div className="md:col-span-1 flex justify-center">
+                    <div className="rounded-xl border border-green-500/30 bg-gradient-to-br from-green-500/10 to-emerald-500/10 p-5 text-center w-full max-w-xs">
+                      <p className="text-xs font-medium text-green-700 uppercase tracking-wide mb-2">
+                        Your Take-Home
+                      </p>
+                      <div className="flex items-center justify-center gap-3">
+                        <motion.div
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center shrink-0"
+                        >
+                          <DollarSign className="w-5 h-5 text-green-600" />
+                        </motion.div>
+                        <p className="text-2xl sm:text-3xl font-extrabold text-green-600">
+                          ${takeHomeFormatted}
+                        </p>
+                      </div>
+                      <p className="mt-3 text-[10px] text-muted-foreground font-mono">
+                        ${rawProfitFormatted} × {percentText}
+                      </p>
                     </div>
                   </div>
+
+                  {/* Total Profit */}
+                  <div className="text-center md:text-right">
+                    <p className="text-xs text-muted-foreground mb-1">Total Profit Generated</p>
+                    <p className="text-xl font-bold">${rawProfitFormatted}</p>
+                    <p className="text-xs text-muted-foreground mt-2">Q4/2025</p>
+                  </div>
                 </div>
-
-                <p className="mt-3 text-[11px] text-muted-foreground font-mono break-words">
-                  ${rawProfitFormatted} × {percentText} = ${takeHomeFormatted}
-                </p>
-              </div>
-
-              <p className="text-xs text-center text-muted-foreground">
-                Performance Period: Q4/2025
-              </p>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
 
         {/* Key Performance Metrics */}
