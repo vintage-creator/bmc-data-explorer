@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { performanceMetrics } from "@/data/tradingData";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 import { Scale, TrendingUp, TrendingDown } from "lucide-react";
 
 // Benchmark data for comparison
@@ -163,6 +163,22 @@ export const BenchmarkComparison = () => {
           </div>
         </div>
 
+        {/* Legend: placed directly under the charts */}
+        <div className="flex flex-wrap gap-4 mt-6 pt-4 border-t border-border" aria-label="Chart legend">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-primary" />
+            <span className="text-xs text-muted-foreground">BMC Portfolio</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-chart-2" />
+            <span className="text-xs text-muted-foreground">Market Benchmarks</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-muted-foreground" />
+            <span className="text-xs text-muted-foreground">Risk-Free Rate</span>
+          </div>
+        </div>
+
         {/* Performance vs Benchmarks Table */}
         <div className="mt-8 pt-6 border-t border-border">
           <h4 className="text-sm font-medium text-muted-foreground mb-4 uppercase tracking-wide">
@@ -184,22 +200,9 @@ export const BenchmarkComparison = () => {
           </div>
         </div>
 
-        {/* Legend */}
-        <div className="flex flex-wrap gap-4 mt-6 pt-4 border-t border-border">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-primary" />
-            <span className="text-xs text-muted-foreground">BMC Portfolio</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-chart-2" />
-            <span className="text-xs text-muted-foreground">Market Benchmarks</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-muted-foreground" />
-            <span className="text-xs text-muted-foreground">Risk-Free Rate</span>
-          </div>
-        </div>
       </Card>
     </motion.div>
   );
 };
+
+export default BenchmarkComparison;
