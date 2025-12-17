@@ -74,9 +74,6 @@ const Index = () => {
 
         {/* Heading */}
         <div className="mb-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary">
-            Prepared For: {recipient}
-          </h2>
           <p className="text-muted-foreground mt-2">
             Personalized Performance Simulation Report — Q4/2025
           </p>
@@ -106,111 +103,6 @@ const Index = () => {
             trend="up"
           />
         </div>
-
-        /* {/* Client Summary - Centered & Balanced */}
-        <div className="flex justify-center mb-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 100 }}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-            className="w-full max-w-3xl"
-          >
-            <Card className="relative border-2 border-primary/30 shadow-2xl bg-gradient-to-br from-card via-card to-primary/10">
-              {/* Header with Badge */}
-              <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent px-6 py-4 border-b border-primary/20">
-                <div className="flex items-center justify-center gap-3">
-                  <motion.div
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <Target className="w-5 h-5 text-primary" />
-                  </motion.div>
-                  <span className="text-sm font-bold uppercase tracking-widest text-primary">
-                    Client Summary
-                  </span>
-                  <Badge variant="secondary" className="ml-2">{percentText} Share</Badge>
-                </div>
-              </div>
-
-              <CardContent className="p-6 sm:p-8">
-                {/* Use a 3-column grid with consistent vertical centering */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-                  {/* Client Info (left) */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="text-center lg:text-left min-w-0"
-                  >
-                    <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">Prepared for</p>
-                    <h3 className="text-xl font-bold text-foreground break-words">{recipient}</h3>
-                    <p className="text-xs text-muted-foreground mt-2">Q4/2025 Performance Report</p>
-                  </motion.div>
-
-                  {/* Take Home (middle) - centered and balanced */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="flex items-center justify-center"
-                  >
-                    <div className="w-full max-w-xs rounded-2xl border-2 border-green-500/30 bg-gradient-to-br from-green-500/15 via-emerald-500/10 to-green-600/5 p-5 text-center shadow-lg shadow-green-500/10">
-                      <p className="text-xs font-semibold text-green-400 uppercase tracking-widest mb-2">
-                        Your Take-Home
-                      </p>
-
-                      <div className="flex items-center justify-center gap-3">
-                        <motion.div
-                          animate={{ 
-                            scale: [1, 1.12, 1],
-                            boxShadow: [
-                              "0 0 0 0 rgba(34, 197, 94, 0.18)",
-                              "0 0 0 10px rgba(34, 197, 94, 0)",
-                              "0 0 0 0 rgba(34, 197, 94, 0)"
-                            ]
-                          }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="w-12 h-12 rounded-full bg-green-500/25 flex items-center justify-center shrink-0"
-                        >
-                          <DollarSign className="w-6 h-6 text-green-500" />
-                        </motion.div>
-
-                        <motion.p 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.7 }}
-                          className="text-2xl sm:text-3xl md:text-3xl font-extrabold text-green-600 break-words"
-                        >
-                          ${takeHomeFormatted}
-                        </motion.p>
-                      </div>
-
-                      <p className="mt-3 text-xs text-muted-foreground font-mono bg-background/0 rounded-md py-2 px-3 inline-block break-words">
-                        ${rawProfitFormatted} × {percentText} = ${takeHomeFormatted}
-                      </p>
-                    </div>
-                  </motion.div>
-
-                  {/* Total Profit (right) */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="text-center lg:text-right min-w-0"
-                  >
-                    <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">Total Profit Generated</p>
-                    <p className="text-2xl font-bold text-foreground break-words">${rawProfitFormatted}</p>
-                    <div className="flex items-center justify-center lg:justify-end gap-2 mt-2">
-                      <TrendingUp className="w-4 h-4 text-green-500" />
-                      <span className="text-sm text-green-500 font-medium">+{performanceMetrics.roi}%</span>
-                    </div>
-                  </motion.div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div> */
 
         {/* Key Performance Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
